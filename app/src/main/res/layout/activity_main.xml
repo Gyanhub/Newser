@@ -6,34 +6,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-   <ImageView
-       android:layout_width="match_parent"
-       android:layout_height="200dp"
-       android:src="@drawable/ic_launcher_foreground"
-       android:scaleType="centerCrop"
-       android:background="#fff000"/>
-    <TextView
-        android:background="@color/trans_red"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No news Currently"
-        android:padding="10dp"
-        android:fontFamily="monospace"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/news_head_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/news_head_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="160dp"
+            android:fontFamily="monospace"
+            android:text="No News Yet"
+            android:textColor="#fff"
+            android:textSize="22sp" />
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/news_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-    </android.support.v7.widget.RecyclerView>
-</LinearLayout>
-
-
+        android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Newser</string>
+    <string name="news_url_str"></string>
 </resources>
