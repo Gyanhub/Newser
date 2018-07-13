@@ -1,15 +1,20 @@
 package in.websuite.web.newser;
 
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +24,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         head_img=(ImageView)findViewById(R.id.news_head_img);
         head_tv=(TextView)findViewById(R.id.news_head_text);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+        recyclerView.setNestedScrollingEnabled(false);
 
         MyVolley volley=new MyVolley();
         volley.getVolleyData();
@@ -69,11 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson=builder.create();
                     newsApi=gson.fromJson (response,NewsApi.class);
                     recyclerView.setAdapter(new MyAdapter());
-
-                    head_tv.setText(newsApi.getArticles().get(0).getTitle());
-                    Glide.with(MainActivity.this).load(newsApi.getArticles().get(0).getUrlToImage()).into(head_img);
-
-
                     pd.dismiss();
                 }
             }, new Response.ErrorListener() {
@@ -99,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerHolder holder, int position) {
-            if(position<newsApi.getArticles().size()-1)
-            {
-                holder.mNews_tv.setText(newsApi.getArticles().get(position+1).getTitle().toString());
-            Glide.with(holder.mNews_img.getContext()).load(newsApi.getArticles().get(position+1).getUrlToImage()).into(holder.mNews_img);
-//                Glide.with(holder.mNews_img.getContext()).load(newsApi.getArticles().get(position).getUrl()).into(holder.mNews_img);
-            }
+        public void onBindViewHolder(final RecyclerHolder holder, int position) {
+
+                holder.mNews_tv.setText(newsApi.getArticles().get(position).getTitle().toString());
+            if(newsApi.getArticles().get(position).getUrlToImage()!=null)
+                         Glide.with(holder.mNews_img.getContext()).load(newsApi.getArticles().get(position).getUrlToImage()).into(holder.mNews_img);
+
+
         }
 
         @Override
