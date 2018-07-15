@@ -1,6 +1,7 @@
 package in.websuite.web.newser;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -88,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
         MyVolley volley = new MyVolley();
         volley.getVolleyData();
-
     }
 
     class MyVolley {
@@ -126,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerHolder> {
 
-
-        @Override
+                @Override
         public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
             View view = inflater.inflate(R.layout.news_view, null);
@@ -135,12 +135,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final RecyclerHolder holder, int position) {
+        public void onBindViewHolder(final RecyclerHolder holder, final int position) {
 
             holder.mNews_tv.setText(newsApi.getArticles().get(position).getTitle().toString());
 
             if ((newsApi.getArticles().get(position).getUrlToImage() != null))
                 Picasso.get().load(newsApi.getArticles().get(position).getUrlToImage()).placeholder(R.drawable.loading).error(R.drawable.loading).into(holder.mNews_img);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(MainActivity.this,NewsDetail.class);
+                    intent.putExtra("image_url",newsApi.getArticles().get(position).getUrlToImage());
+                    intent.putExtra("news_title",newsApi.getArticles().get(position).getTitle());
+                    intent.putExtra("news_details",newsApi.getArticles().get(position).getDescription());
+                    MainActivity.this.startActivity(intent);
+                }
+            });
 
         }
 
@@ -159,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 mNews_img = (ImageView) itemView.findViewById(R.id.news_img);
                 mNews_tv = (TextView) itemView.findViewById(R.id.news_text);
             }
+
         }
     }
 }
