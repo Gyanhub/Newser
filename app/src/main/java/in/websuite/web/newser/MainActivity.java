@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerHolder> {
 
 
