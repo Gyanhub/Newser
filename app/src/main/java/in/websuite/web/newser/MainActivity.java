@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    String NEWS_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=55b76cf25d2c497b88d573aaa47d0756";
+    String NEWS_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=c143ac55e9584316a9b5012075104807";
 
     ProgressDialog pd;
 
