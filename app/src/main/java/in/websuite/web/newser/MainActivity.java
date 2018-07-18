@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String mNewsType[]={"Trending","Education","Science","Sports","Health","Business","Crime"};
 
     TabLayout tabLayout;
+    AppBarLayout appBarLayout;
     ViewPager viewPager;
 
 
@@ -41,18 +43,29 @@ public class MainActivity extends AppCompatActivity {
         head_img = (ImageView) findViewById(R.id.news_head_img);
         tabLayout=(TabLayout)findViewById(R.id.tab_layout);
         viewPager=(ViewPager)findViewById(R.id.view_pager);
+        appBarLayout=(AppBarLayout)findViewById(R.id.ab_layout);
 
-
+        ProgressDialog pd=new ProgressDialog(MainActivity.this,ProgressDialog.STYLE_SPINNER);
+        pd.setMessage("Please wait...");
+        pd.setCancelable(false);
+        pd.show();
         MyFragmentAdapter myFragmentAdapter=new MyFragmentAdapter();
         myFragmentAdapter.fragments.add(new TrendingFragment(MainActivity.this));
         myFragmentAdapter.fragments.add(new SportFragment(MainActivity.this));
         myFragmentAdapter.fragments.add(new EducationFragment(MainActivity.this));
+        myFragmentAdapter.fragments.add(new ScienceFragment(MainActivity.this));
+        myFragmentAdapter.fragments.add(new HealthFragment(MainActivity.this));
+        myFragmentAdapter.fragments.add(new CrimeFragment(MainActivity.this));
         myFragmentAdapter.title.add("Trending");
         myFragmentAdapter.title.add("Sport");
         myFragmentAdapter.title.add("Education");
+        myFragmentAdapter.title.add("Science");
+        myFragmentAdapter.title.add("Health");
+        myFragmentAdapter.title.add("Crime");
 
         viewPager.setAdapter(myFragmentAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        pd.dismiss();
 
     }
 

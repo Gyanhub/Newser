@@ -16,22 +16,18 @@ import com.google.gson.GsonBuilder;
 class MyVolley {
 
     NewsApi newsApi;
-    RecyclerView mTrending;
-    ProgressDialog pd;
+    RecyclerView recyclerView;
 
     Context context;
 
     String NEWS_URL ;
     String newsType="";
 
-    MyVolley(Context context,RecyclerView mTrending,String url) {
+    MyVolley(Context context,RecyclerView recyclerView,String url) {
         this.context=context;
-        this.mTrending=mTrending;
+        this.recyclerView=recyclerView;
         this.NEWS_URL=url;
-        pd = new ProgressDialog(context, ProgressDialog.STYLE_SPINNER);
-        pd.setMessage("fetching data...");
-        pd.setCancelable(false);
-        pd.show();
+
     }
 
     void getVolleyData() {
@@ -42,13 +38,13 @@ class MyVolley {
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
                 newsApi = gson.fromJson(response, NewsApi.class);
-                mTrending.setAdapter(new MyAdapter(context,newsApi));
-                pd.dismiss();
+                recyclerView.setAdapter(new MyAdapter(context,newsApi));
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                pd.dismiss();
+
                 Toast.makeText(context, "Unable to fetch data : " + error, Toast.LENGTH_LONG).show();
             }
         });

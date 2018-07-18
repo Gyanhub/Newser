@@ -40,7 +40,7 @@ public class TrendingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_trending, container, false);
         mTrending = (RecyclerView) view.findViewById(R.id.rv_trend);
         mTrending.setLayoutManager(new LinearLayoutManager(context));
-        mTrending.setNestedScrollingEnabled(false);
+      //  mTrending.setNestedScrollingEnabled(false);
 
         MyVolley volley = new MyVolley(context, mTrending,url);
         volley.getVolleyData();

@@ -12,18 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class EducationFragment extends Fragment {
-
+@SuppressLint("ValidFragment")
+public class HealthFragment extends Fragment {
 
     RecyclerView recyclerView;
-    String url="https://newsapi.org/v2/everything?domains=thehindu.com&q=education&sortBy=popularity&apiKey=c143ac55e9584316a9b5012075104807";
     Context context;
-
-    @SuppressLint("ValidFragment")
-    EducationFragment()
+    String url="https://newsapi.org/v2/everything?domains=thehindu.com&q=health&apiKey=c143ac55e9584316a9b5012075104807";
+    HealthFragment()
     {}
-    @SuppressLint("ValidFragment")
-    EducationFragment(Context context)
+    HealthFragment(Context context)
     {
         this.context=context;
     }
@@ -35,13 +32,14 @@ public class EducationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_education, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_education);
+        View view = inflater.inflate(R.layout.fragment_health, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_health);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-      //  recyclerView.setNestedScrollingEnabled(false);
+        //  mTrending.setNestedScrollingEnabled(false);
 
         MyVolley volley = new MyVolley(context, recyclerView,url);
         volley.getVolleyData();
+        // Inflate the layout for this fragment
         return view;
     }
 
