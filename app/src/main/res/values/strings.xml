@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Newser</string>
     <string name="news_url_str"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
