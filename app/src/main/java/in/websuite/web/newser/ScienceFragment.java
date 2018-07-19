@@ -10,13 +10,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 @SuppressLint("ValidFragment")
 public class ScienceFragment extends Fragment {
 
     Context context;
     RecyclerView recyclerView;
-    String url="https://newsapi.org/v2/everything?domains=thehindu.com&q=science&apiKey=c143ac55e9584316a9b5012075104807";
+    Button btn;
+    ProgressBar progressBar;
+    MyVolley volley;
+    boolean result;
+    String url="https://newsapi.org/v2/everything?domains=cnn.com&q=science&apiKey=c143ac55e9584316a9b5012075104807";
 
     public ScienceFragment()
     {}
@@ -35,10 +41,27 @@ public class ScienceFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_science, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_science);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        //  mTrending.setNestedScrollingEnabled(false);
 
-        MyVolley volley = new MyVolley(context, recyclerView,url);
-        volley.getVolleyData();
+        progressBar =(ProgressBar) view.findViewById(R.id.progress);
+        progressBar.setVisibility(View.VISIBLE);
+
+        btn = (Button) view.findViewById(R.id.btn_try);
+        result = false;
+
+        volley = new MyVolley(context, recyclerView, url,btn,progressBar);
+
+
+
+        result = volley.getVolleyData();
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                result = volley.getVolleyData();
+
+            }
+        });
+
         return  view;
     }
 
