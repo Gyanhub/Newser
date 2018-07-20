@@ -18,7 +18,7 @@ public class EducationFragment extends Fragment {
 
 
     RecyclerView recyclerView;
-    String url="https://newsapi.org/v2/everything?domains=cnn.com&q=education&sortBy=popularity&apiKey=c143ac55e9584316a9b5012075104807";
+    String url="https://newsapi.org/v2/everything?domains=domains=abplive.in,newsnation.in,india.com,intoday.in,ndtv.com&q=education&sortBy=popularity&apiKey=c143ac55e9584316a9b5012075104807";
     Context context;
     ProgressBar progressBar;
     Button btn;

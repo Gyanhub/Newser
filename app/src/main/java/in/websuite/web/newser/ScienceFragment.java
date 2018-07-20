@@ -22,7 +22,7 @@ public class ScienceFragment extends Fragment {
     ProgressBar progressBar;
     MyVolley volley;
     boolean result;
-    String url="https://newsapi.org/v2/everything?domains=cnn.com&q=science&apiKey=c143ac55e9584316a9b5012075104807";
+    String url="https://newsapi.org/v2/everything?domains=domains=abplive.in,newsnation.in,india.com,intoday.in,ndtv.com&apiKey=c143ac55e9584316a9b5012075104807";
 
     public ScienceFragment()
     {}

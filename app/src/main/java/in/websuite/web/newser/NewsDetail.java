@@ -29,7 +29,11 @@ public class NewsDetail extends AppCompatActivity {
             String news_title=getIntent().getStringExtra("news_title");
             String news_details=getIntent().getStringExtra("news_details");
 
-            Picasso.get().load(image_url).placeholder(R.drawable.loading).error(R.drawable.loading).into(mImage);
+            if ((image_url != null) && (image_url.length()>0))
+                Picasso.get().load(image_url).placeholder(R.drawable.loading).error(R.drawable.noimage).into(mImage);
+            else
+                mImage.setImageResource(R.drawable.noimage);
+
             mTitle.setText(news_title);
             mDesc.setText(news_details);
         }

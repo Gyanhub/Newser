@@ -44,9 +44,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerHolder> {
                 context.startActivity(intent);
             }
         });
-        if ((newsApi.getArticles().get(position).getUrlToImage() != null))
-            Picasso.get().load(newsApi.getArticles().get(position).getUrlToImage()).placeholder(R.drawable.loading).error(R.drawable.loading).into(holder.mNews_img);
-
+        if ((newsApi.getArticles().get(position).getUrlToImage() != null) && (newsApi.getArticles().get(position).getUrlToImage().length()>0))
+            Picasso.get().load(newsApi.getArticles().get(position).getUrlToImage()).placeholder(R.drawable.loading).error(R.drawable.noimage).into(holder.mNews_img);
+        else
+            holder.mNews_img.setImageResource(R.drawable.noimage);
 
     }
 
