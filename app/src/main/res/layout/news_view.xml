@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="4dp"
             android:orientation="horizontal"
+            android:background="#515151"
             android:weightSum="3">
 
                 <ImageView
@@ -29,19 +30,20 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_weight="1"/>
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_weight="2">
             <TextView
                 android:id="@+id/news_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="80dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
                 android:text="No news"
-                android:textSize="18sp"
-                android:layout_weight="2"/>
+                android:textSize="18sp"/>
+</LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

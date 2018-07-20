@@ -24,7 +24,7 @@ public class CrimeFragment extends Fragment {
     Button btn;
     boolean result;
     MyVolley volley;
-    String url = "https://newsapi.org/v2/everything?domains=domains=abplive.in,newsnation.in,india.com,intoday.in,ndtv.com&apiKey=c143ac55e9584316a9b5012075104807";
+    String url = "https://newsapi.org/v2/everything?domains=domains=abplive.in,newsnation.in,india.com,ndtv.com&q=crime&apiKey=c143ac55e9584316a9b5012075104807";
 
     CrimeFragment() {
     }

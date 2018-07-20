@@ -20,8 +20,8 @@
         android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
         android:textSize="22sp"
+        android:textColor="#ffffff"
         android:text="Please wait ..."
         android:layout_margin="20dp"
         />
